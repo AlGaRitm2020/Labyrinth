@@ -3,9 +3,10 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "C:/Users/Lenovo/MyProjects/PyProjects/PyGame_Project/maps/map.tmx",
+    "activeFile": "map2.tmx",
     "expandedProjectPaths": [
-        "C:/Users/Lenovo/MyProjects/PyProjects/PyGame_Project/maps"
+        "C:/Users/Lenovo/MyProjects/PyProjects/PyGame_Project/maps",
+        "."
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
@@ -16,6 +17,20 @@
                 "x": 707.9248311375643,
                 "y": 247.38848391627107
             }
+        },
+        "C:/Program Files/Tiled/examples/desert.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Program Files/Tiled/examples/perspective_walls.tmx": {
+            "scale": 0.7294146341463414,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 496.9738514010566,
+                "y": 480.52230321674585
+            }
+        },
+        "C:/Program Files/Tiled/examples/perspective_walls.tsx": {
+            "scaleInDock": 1
         },
         "C:/Users/Lenovo/MyProjects/PyProjects/PyGame_Project/maps/map.tmx": {
             "scale": 0.75,
@@ -41,9 +56,13 @@
             "scale": 0.7678267045454545,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 124.37702340209046,
-                "y": -3830.942558505226
+                "x": 280.6622884099528,
+                "y": 367.9215613726759
             }
+        },
+        "tmw_desert_spacing.tsx": {
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "map.height": 19,
@@ -51,11 +70,18 @@
     "map.layerDataFormat": null,
     "map.width": 21,
     "openFiles": [
-        "C:/Users/Lenovo/MyProjects/PyProjects/PyGame_Project/maps/map.tmx"
+        "map1.tmx",
+        "tmw_desert_spacing.tsx",
+        "C:/Program Files/Tiled/examples/desert.tmx",
+        "map2.tmx"
     ],
     "project": "Labirinth.tiled-project",
     "recentFiles": [
+        "map1.tmx",
+        "tmw_desert_spacing.tsx",
+        "C:/Program Files/Tiled/examples/desert.tmx",
         "map2.tmx",
+        "C:/Program Files/Tiled/examples/perspective_walls.tmx",
         "C:/Users/Lenovo/MyProjects/PyProjects/PyGame_Project/maps/sets/fdsas.tsx",
         "C:/Users/Lenovo/MyProjects/PyProjects/PyGame_Project/maps/map.tmx"
     ],

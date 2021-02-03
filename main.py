@@ -9,8 +9,9 @@ TILE_SIZE = 32
 ENEMY_EVENT_TYPE = 30
 
 
-class Labyrinth:
+class Labyrinth(pygame.sprite.Sprite):
     def __init__(self, filename, free_tiles, finish_tile):
+        pygame.sprite.Sprite.__init__(self)
         a = open(f"{MAPS_DIR}/{filename}")
         print(a)
         self.map = load_pygame(f"{MAPS_DIR}/{filename}")
@@ -59,8 +60,9 @@ class Labyrinth:
         return x, y
 
 
-class Hero:
+class Hero(pygame.sprite.Sprite):
     def __init__(self, position):
+        pygame.sprite.Sprite.__init__(self)
         self.x, self.y = position
 
     def get_position(self):
@@ -74,8 +76,9 @@ class Hero:
         pygame.draw.circle(screen, (255, 255, 255), center, TILE_SIZE // 2)
 
 
-class Enemy:
+class Enemy(pygame.sprite.Sprite):
     def __init__(self, position):
+        pygame.sprite.Sprite.__init__(self)
         self.x, self.y = position
         self.delay = 100
         pygame.time.set_timer(ENEMY_EVENT_TYPE, self.delay)
@@ -103,7 +106,9 @@ class Game:
         self.enemy.render(screen)
 
     def move_hero(self):
+
         next_x, next_y = self.hero.get_position()
+        print(next_x, next_y)
         if pygame.key.get_pressed()[pygame.K_LEFT]:
             next_x -= 1
         if pygame.key.get_pressed()[pygame.K_RIGHT]:
@@ -126,6 +131,24 @@ class Game:
         return self.hero.get_position() == self.enemy.get_position()
 
 
+class Camera:
+    # зададим начальный сдвиг камеры
+    def __init__(self):
+        self.dx = 0
+        self.dy = 0
+
+    # сдвинуть объект obj на смещение камеры
+    def apply(self, obj):
+        obj.rect.x += self.dx
+        obj.rect.y += self.dy
+
+    # позиционировать камеру на объекте target
+    def update(self, position):
+        x, y = position
+        self.dx = -(x + TILE_SIZE // 2 - TILE_SIZE // 2)
+        self.dy = -(y + TILE_SIZE // 2 - TILE_SIZE // 2)
+
+
 def show_message(screen, message):
     font = pygame.font.Font(None, 50)
     text = font.render(message, True, (50, 70, 0))
@@ -140,11 +163,18 @@ def show_message(screen, message):
 def main():
     pygame.init()
     screen = pygame.display.set_mode(WINDOW_SIZE)
-
+    all_sprites = pygame.sprite.Group()
     labyrinth = Labyrinth('map2.tmx', [30, 46], 46)
     hero = Hero((10, 9))
     enemy = Enemy((19, 9))
     game = Game(labyrinth, hero, enemy)
+    camera = Camera()
+
+    # all_sprites.add(labyrinth)
+    # all_sprites.add(hero)
+    # all_sprites.add(enemy)
+
+
     clock = pygame.time.Clock()
 
     running = True
@@ -155,8 +185,15 @@ def main():
                 running = False
             if event.type == ENEMY_EVENT_TYPE and not game_over:
                 game.move_enemy()
+
         if game_over is False:
             game.move_hero()
+            camera.update(hero.get_position())
+
+        # Обновление
+        all_sprites.update()
+        for sprite in all_sprites:
+            sprite.x -= 5
         screen.fill((0, 0, 0))
         game.render(screen)
         if game.check_win():
